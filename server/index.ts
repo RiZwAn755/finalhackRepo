@@ -3,4 +3,4 @@ const app = express();
 
 import authRouter from './routes/auth'
 
-app.use('/auth');
+app.use('/auth', authRouter);
