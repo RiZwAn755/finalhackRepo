@@ -1,1 +1,0 @@
-{"root":["../config.ts","../index.ts","../schema.ts","../controllers/auth.ts","../middlewares/auth.ts","../routes/auth.ts","../routes/follow.ts","../routes/home.ts","../routes/post.ts","../service/auth.ts"],"version":"5.7.2"}
