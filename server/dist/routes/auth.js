@@ -28,7 +28,13 @@ router.post('/student/signup', (req, res) => __awaiter(void 0, void 0, void 0, f
             { email: email }
         ]
     });
-    if (findUser) {
+    const findUser1 = yield schema_1.Alumuni.findOne({
+        $or: [
+            { username: username },
+            { email: email }
+        ]
+    });
+    if (findUser || findUser1) {
         res.status(502).json({
             msg: "Username / email in use"
         });
@@ -61,13 +67,19 @@ router.post('/student/signup', (req, res) => __awaiter(void 0, void 0, void 0, f
 router.post('/alumuni/signup', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = req.body.email;
     const username = req.body.username;
-    const findUser = yield schema_1.Alumuni.findOne({
+    const findUser1 = yield schema_1.Alumuni.findOne({
         $or: [
             { username: username },
             { email: email }
         ]
     });
-    if (findUser) {
+    const findUser2 = yield schema_1.Student.findOne({
+        $or: [
+            { username: username },
+            { email: email }
+        ]
+    });
+    if (findUser1 || findUser2) {
         res.status(502).json({
             msg: "Username / email in use"
         });

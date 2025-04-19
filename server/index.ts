@@ -2,10 +2,10 @@ import express from 'express'
 const app = express();
 
 import authRouter from './routes/auth'
-
+const cors = require("cors");
 app.use('/auth', authRouter);
-app.use()
+app.use(cors());
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000....')
+app.listen(8080, () => {
+    console.log('Listening on port 8080....')
 })

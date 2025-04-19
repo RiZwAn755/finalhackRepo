@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Student = exports.Alumuni = void 0;
+exports.Post = exports.Student = exports.Alumuni = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const StudentSchema = new mongoose_1.Schema({
     email: { type: String, required: true, unique: true, max: 50 },
@@ -47,6 +47,7 @@ const StudentSchema = new mongoose_1.Schema({
     course: { type: String, requried: true, max: 50 },
     yop: { type: Number, required: true },
     conn: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Alumuni' }],
+    posts: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Post' }],
     pic_url: { type: String }
 });
 const AlumuniSchema = new mongoose_1.Schema({
@@ -61,12 +62,18 @@ const AlumuniSchema = new mongoose_1.Schema({
     yop: { type: Number, required: true },
     studentId: { type: String, required: true, max: 50 },
     conn: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Student' }],
+    posts: [{ type: mongoose_1.default.Schema.Types.ObjectId, ref: 'Post' }],
     profile_url: { type: String },
 });
-const Posts = new mongoose_1.Schema({
-    title: { type: String },
+const PostSchema = new mongoose_1.Schema({
+    content: { type: String },
     likes: { type: String },
+    user: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        refs: 'Alumuni'
+    },
     pic_url: { type: String }
 });
 exports.Alumuni = mongoose_1.default.model("Alumuni", AlumuniSchema);
 exports.Student = mongoose_1.default.model("Student", StudentSchema);
+exports.Post = mongoose_1.default.model("Post", PostSchema);

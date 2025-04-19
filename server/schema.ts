@@ -38,11 +38,13 @@ const PostSchema = new Schema({
     likes : {type : String},
     user : {
         type : mongoose.Schema.Types.ObjectId,
-        refs : ['Alumuni','Student']
+        refs : 'Alumuni'
     },
     
     pic_url : {type : String}
 })
+
+
 
 export const Alumuni = mongoose.model("Alumuni",AlumuniSchema);
 export const Student = mongoose.model("Student",StudentSchema);
